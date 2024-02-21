@@ -8,7 +8,7 @@
 import Logging
 import Foundation
 import XCTest
-import FeatherService
+import FeatherComponent
 import FeatherMail
 import FeatherMailDriverMemory
 import XCTFeatherMail
@@ -17,12 +17,12 @@ final class FeatherMailDriverMemoryTests: XCTestCase {
 
     func testMemoryDriverUsingTestSuite() async throws {
         do {
-            let registry = ServiceRegistry()
+            let registry = ComponentRegistry()
             
-            try await registry.add(.memoryMail(), as: .memoryMail)
+            try await registry.addMail(MemoryMailComponentContext())
 
             try await registry.run()
-            let mail = try await registry.get(.memoryMail) as! MailService
+            let mail = try await registry.mail()
 
             do {
                 let suite = MailTestSuite(mail)
@@ -31,8 +31,8 @@ final class FeatherMailDriverMemoryTests: XCTestCase {
                     to: "to@example.com"
                 )
                 
-                let service = mail as! MemoryMailService
-                let mailbox = await service.getMailbox()
+                let component = mail as! MemoryMailComponent
+                let mailbox = await component.getMailbox()
                 XCTAssertFalse(mailbox.isEmpty)
 
                 try await registry.shutdown()
