@@ -9,10 +9,12 @@ import Foundation
 import FeatherComponent
 import FeatherMail
 
+/// memory mail component
 @dynamicMemberLookup
 public struct MemoryMailComponent {
 
     let memoryMail: MemoryMail
+    /// component config
     public let config: ComponentConfig
 
     subscript<T>(
@@ -29,7 +31,8 @@ public struct MemoryMailComponent {
 }
 
 extension MemoryMailComponent {
-    
+
+    /// get mail box object
     public func getMailbox() async -> [Mail] {
         await memoryMail.getMailbox()
     }
@@ -37,6 +40,7 @@ extension MemoryMailComponent {
 
 extension MemoryMailComponent: MailComponent {
 
+    /// send a new mail
     public func send(_ email: FeatherMail.Mail) async throws {
         await memoryMail.add(email)
     }

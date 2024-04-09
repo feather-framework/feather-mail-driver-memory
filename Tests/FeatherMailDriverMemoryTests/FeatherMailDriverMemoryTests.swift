@@ -18,10 +18,9 @@ final class FeatherMailDriverMemoryTests: XCTestCase {
     func testMemoryDriverUsingTestSuite() async throws {
         do {
             let registry = ComponentRegistry()
-            
+
             try await registry.addMail(MemoryMailComponentContext())
 
-            try await registry.run()
             let mail = try await registry.mail()
 
             do {
@@ -30,16 +29,13 @@ final class FeatherMailDriverMemoryTests: XCTestCase {
                     from: "from@example.com",
                     to: "to@example.com"
                 )
-                
+
                 let component = mail as! MemoryMailComponent
                 let mailbox = await component.getMailbox()
                 XCTAssertFalse(mailbox.isEmpty)
 
-                try await registry.shutdown()
             }
             catch {
-                try await registry.shutdown()
-                
                 throw error
             }
         }
