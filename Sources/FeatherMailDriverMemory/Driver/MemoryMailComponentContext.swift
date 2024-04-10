@@ -7,13 +7,16 @@
 
 import FeatherComponent
 
+/// memory mail component context
 public struct MemoryMailComponentContext: ComponentContext {
 
-    public init(){
-        
+    /// memory mail component context init
+    public init() {
+
     }
 
-    public func make() throws -> ComponentBuilder {
-        MemoryMailComponentBuilder()
+    /// make
+    public func make() throws -> ComponentFactory {
+        MemoryMailComponentFactory()
     }
 }
