@@ -23,4 +23,8 @@ final actor MemoryMail {
     func add(_ mail: Mail) {
         delivered.append(mail)
     }
+
+    func clear() {
+        delivered = []
+    }
 }
