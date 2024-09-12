@@ -23,10 +23,6 @@ public struct MemoryMailComponent {
         let context = config.context as! MemoryMailComponentContext
         return context[keyPath: keyPath]
     }
-
-    init(config: ComponentConfig) {
-        self.config = config
-    }
 }
 
 extension MemoryMailComponent {
