@@ -1,21 +1,21 @@
 //
-//  MemoryMailTestSuite.swift
+//  EphemeralMailboxTestSuite.swift
 //  feather-memory-mail
 //
 //  Created by Binary Birds on 2026. 01. 15..
 
 import Testing
 import FeatherMail
-@testable import FeatherMemoryMail
+@testable import FeatherMailEphemeral
 
 @Suite
-struct MemoryMailTestSuite {
+struct EphemeralMailboxTestSuite {
 
     // MARK: - Validation
 
     @Test
     func memoryMail_invalidSenderThrows() async {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         let mail = Mail(
             from: .init("   "),
@@ -31,7 +31,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_invalidSubjectThrows() async {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         let mail = Mail(
             from: .init("from@example.com"),
@@ -47,7 +47,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_invalidRecipientThrows() async {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         let mail = Mail(
             from: .init("from@example.com"),
@@ -66,7 +66,7 @@ struct MemoryMailTestSuite {
         let validator = BasicMailValidator(
             maxTotalAttachmentSize: 100
         )
-        let mailbox = MemoryMail(validator: validator)
+        let mailbox = EphemeralMailbox(validator: validator)
 
         let data = [UInt8](repeating: 0, count: 1_024)
 
@@ -91,7 +91,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_headerInjectionThrows() async {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         let mail = Mail(
             from: .init("from@example.com"),
@@ -107,7 +107,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_customValidatorIsUsed() async {
-        let mailbox = MemoryMail(
+        let mailbox = EphemeralMailbox(
             validator: RejectingValidator(error: .invalidSubject)
         )
 
@@ -127,7 +127,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_storesValidMail() async throws {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         let mail = Mail(
             from: .init("from@example.com"),
@@ -145,7 +145,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_preservesInsertionOrder() async throws {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         let first = Mail(
             from: .init("from@example.com"),
@@ -170,7 +170,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_clearRemovesAll() async throws {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         let mail = Mail(
             from: .init("from@example.com"),
@@ -188,7 +188,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_validateDoesNotStoreMail() async throws {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         let mail = Mail(
             from: .init("from@example.com"),
@@ -207,7 +207,7 @@ struct MemoryMailTestSuite {
 
     @Test
     func memoryMail_isConcurrencySafe() async throws {
-        let mailbox = MemoryMail()
+        let mailbox = EphemeralMailbox()
 
         await withTaskGroup(of: Void.self) { group in
             for i in 0..<100 {

@@ -1,19 +1,19 @@
 //
-//  FeatherMemoryMailTestSuite.swift
+//  FeatherMailEphemeralTestSuite.swift
 //  feather-memory-mail
 //
 //  Created by Binary Birds on 2026. 01. 15..
 
 import Testing
 import FeatherMail
-@testable import FeatherMemoryMail
+@testable import FeatherMailEphemeral
 
 @Suite
-struct FeatherMemoryMailTestSuite {
+struct FeatherMailEphemeralTestSuite {
 
     @Test
     func clientSendStoresMail() async throws {
-        let client = MemoryMailClient()
+        let client = MailClientEphemeral()
         let mail = Mail(
             from: .init("from@example.com"),
             to: [.init("to@example.com")],
@@ -29,7 +29,7 @@ struct FeatherMemoryMailTestSuite {
 
     @Test
     func clientValidateDoesNotThrowForValidMail() async throws {
-        let client = MemoryMailClient()
+        let client = MailClientEphemeral()
         let mail = Mail(
             from: .init("from@example.com"),
             to: [.init("to@example.com")],
@@ -42,7 +42,7 @@ struct FeatherMemoryMailTestSuite {
 
     @Test
     func clientValidateThrowsForInvalidMail() async {
-        let client = MemoryMailClient()
+        let client = MailClientEphemeral()
         let mail = Mail(
             from: .init(" "),
             to: [.init("to@example.com")],
@@ -57,7 +57,7 @@ struct FeatherMemoryMailTestSuite {
 
     @Test
     func clientClearMailboxRemovesAll() async throws {
-        let client = MemoryMailClient()
+        let client = MailClientEphemeral()
         let mail = Mail(
             from: .init("from@example.com"),
             to: [.init("to@example.com")],
@@ -73,10 +73,10 @@ struct FeatherMemoryMailTestSuite {
 
     @Test
     func clientSendUsesInjectedValidator() async throws {
-        let mailbox = MemoryMail(
+        let mailbox = EphemeralMailbox(
             validator: RejectingValidator(error: .invalidSubject)
         )
-        let client = MemoryMailClient(memoryMail: mailbox)
+        let client = MailClientEphemeral(mailbox: mailbox)
         let mail = Mail(
             from: .init("from@example.com"),
             to: [.init("to@example.com")],

@@ -3,7 +3,6 @@ import PackageDescription
 
 // NOTE: https://github.com/swift-server/swift-http-server/blob/main/Package.swift
 var defaultSwiftSettings: [SwiftSetting] = [
-    
     // https://github.com/swiftlang/swift-evolution/blob/main/proposals/0441-formalize-language-mode-terminology.md
     .swiftLanguageMode(.v6),
     // https://github.com/swiftlang/swift-evolution/blob/main/proposals/0444-member-import-visibility.md
@@ -11,7 +10,7 @@ var defaultSwiftSettings: [SwiftSetting] = [
     // https://forums.swift.org/t/experimental-support-for-lifetime-dependencies-in-swift-6-2-and-beyond/78638
     .enableExperimentalFeature("Lifetimes"),
     // https://github.com/swiftlang/swift/pull/65218
-    .enableExperimentalFeature("AvailabilityMacro=featherMemoryMail:macOS 15, iOS 18, watchOS 9, tvOS 11, visionOS 2"),
+    .enableExperimentalFeature("AvailabilityMacro=featherMailEphemeral:macOS 15, iOS 18, watchOS 9, tvOS 11, visionOS 2"),
 ]
 
 #if compiler(>=6.2)
@@ -23,9 +22,9 @@ defaultSwiftSettings.append(
 
 
 let package = Package(
-    name: "feather-memory-mail",
+    name: "feather-mail-ephemeral",
     products: [
-        .library(name: "FeatherMemoryMail", targets: ["FeatherMemoryMail"]),
+        .library(name: "FeatherMailEphemeral", targets: ["FeatherMailEphemeral"]),
     ],
     dependencies: [
         // [docc-plugin-placeholder]
@@ -33,17 +32,17 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "FeatherMemoryMail",
+            name: "FeatherMailEphemeral",
             dependencies: [
                 .product(name: "FeatherMail", package: "feather-mail"),
             ],
             swiftSettings: defaultSwiftSettings
         ),
         .testTarget(
-            name: "FeatherMemoryMailTestSuiteuite",
+            name: "FeatherMailEphemeralTestSuiteuite",
             dependencies: [
                 .product(name: "FeatherMail", package: "feather-mail"),
-                .target(name: "FeatherMemoryMail"),
+                .target(name: "FeatherMailEphemeral"),
             ],
             swiftSettings: defaultSwiftSettings
         ),

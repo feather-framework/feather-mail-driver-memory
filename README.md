@@ -4,7 +4,7 @@ In-memory mail client for Feather Mail, designed for tests and local development
 It mirrors the behavior of real mail transports (SMTP, SES) without performing any network operations.
 
 [![Release: 1.0.0-beta.1](https://img.shields.io/badge/Release-1.0.0--beta.1-F05138)](
-    https://github.com/feather-framework/feather-memory-mail/releases/tag/1.0.0-beta.1
+    https://github.com/feather-framework/feather-mail-ephemeral/releases/tag/1.0.0-beta.1
 )
 
 ## Features
@@ -33,19 +33,19 @@ It mirrors the behavior of real mail transports (SMTP, SES) without performing a
 Use Swift Package Manager; add the dependency to your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/feather-framework/feather-memory-mail", exact: from: "1.0.0-beta.1"),
+.package(url: "https://github.com/feather-framework/feather-mail-ephemeral", exact: from: "1.0.0-beta.1"),
 ```
 
-Then add `FeatherMemoryMail` to your target dependencies:
+Then add `FeatherMailEphemeral` to your target dependencies:
 
 ```swift
-.product(name: "FeatherMemoryMail", package: "feather-memory-mail"),
+.product(name: "FeatherMailEphemeral", package: "feather-mail-ephemeral"),
 ```
 
 ## Usage
 
 [![DocC API documentation](https://img.shields.io/badge/DocC-API_documentation-F05138)](
-    https://feather-framework.github.io/feather-memory-mail/
+    https://feather-framework.github.io/feather-mail-ephemeral/
 )
 
 API documentation is available at the following link.
@@ -87,4 +87,4 @@ let mailbox = await client.getMailbox()
 
 ## Contributing
 
-[Pull requests](https://github.com/feather-framework/feather-memory-mail/pulls) are welcome. Please keep changes focused and include tests for new logic.
+[Pull requests](https://github.com/feather-framework/feather-mail-ephemeral/pulls) are welcome. Please keep changes focused and include tests for new logic.
