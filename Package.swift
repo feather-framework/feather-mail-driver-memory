@@ -23,12 +23,19 @@ defaultSwiftSettings.append(
 
 let package = Package(
     name: "feather-mail-ephemeral",
+    platforms: [
+        .macOS(.v15),
+        .iOS(.v18),
+        .tvOS(.v18),
+        .watchOS(.v11),
+        .visionOS(.v2),
+    ],
     products: [
         .library(name: "FeatherMailEphemeral", targets: ["FeatherMailEphemeral"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/feather-framework/feather-mail", exact: "1.0.0-beta.3"),
         // [docc-plugin-placeholder]
-        .package(url: "https://github.com/feather-framework/feather-mail", exact: "1.0.0-beta.2"),
     ],
     targets: [
         .target(
