@@ -59,7 +59,7 @@ extension MailClientEphemeral {
     ///
     /// - Returns: A snapshot of delivered mails in insertion order.
     public func getMailbox() async -> [Mail] {
-        await mailbox.getMailbox()
+        await mailbox.getMessages()
     }
 
     /// Removes all mails from the mailbox.

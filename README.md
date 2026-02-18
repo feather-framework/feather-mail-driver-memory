@@ -1,15 +1,17 @@
-# Feather Memory Mail
+# Feather Mail Ephemeral
 
-In-memory mail client for Feather Mail, designed for tests and local development.
+Ephemeral (in-memory) mail client for Feather Mail, designed for tests and local development.
 It mirrors the behavior of real mail transports (SMTP, SES) without performing any network operations.
 
-[![Release: 1.0.0-beta.1](https://img.shields.io/badge/Release-1.0.0--beta.1-F05138)](
-    https://github.com/feather-framework/feather-mail-ephemeral/releases/tag/1.0.0-beta.1
+[
+    ![Release: 1.0.0-beta.2](https://img.shields.io/badge/Release-1.0.0--beta.2-F05138)
+](
+    https://github.com/feather-framework/feather-mail-ephemeral/releases/tag/1.0.0-beta.2
 )
 
 ## Features
 
-- In-memory mailbox with insertion-order storage
+- Ephemeral mailbox with insertion-order storage
 - Validates mail before storage
 - Supports plain text, HTML, and attachments
 - No network dependencies
@@ -33,7 +35,7 @@ It mirrors the behavior of real mail transports (SMTP, SES) without performing a
 Use Swift Package Manager; add the dependency to your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/feather-framework/feather-mail-ephemeral", exact: from: "1.0.0-beta.1"),
+.package(url: "https://github.com/feather-framework/feather-mail-ephemeral", exact: from: "1.0.0-beta.2"),
 ```
 
 Then add `FeatherMailEphemeral` to your target dependencies:
@@ -44,7 +46,9 @@ Then add `FeatherMailEphemeral` to your target dependencies:
 
 ## Usage
 
-[![DocC API documentation](https://img.shields.io/badge/DocC-API_documentation-F05138)](
+[
+    ![DocC API documentation](https://img.shields.io/badge/DocC-API_documentation-F05138)
+](
     https://feather-framework.github.io/feather-mail-ephemeral/
 )
 
@@ -56,7 +60,7 @@ API documentation is available at the following link.
 ### Example
 
 ```swift
-let client = MemoryMailClient()
+let client = MailClientEphemeral()
 
 let mail = Mail(
     from: .init("from@example.com"),
@@ -73,8 +77,8 @@ let mailbox = await client.getMailbox()
 ## Related repositories
 
 - [Feather Mail](https://github.com/feather-framework/feather-mail)
-- [Feather SMTP Mail](https://github.com/feather-framework/feather-smtp-mail)
-- [Feather SES Mail](https://github.com/feather-framework/feather-ses-mail)
+- [Feather Mail SMTP](https://github.com/feather-framework/feather-mail-smtp)
+- [Feather Mail SES](https://github.com/feather-framework/feather-mail-ses)
 
 ## Development
 

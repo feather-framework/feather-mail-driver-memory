@@ -17,7 +17,7 @@ import FeatherMail
 public actor EphemeralMailbox {
 
     /// Stored mails in the order they were added.
-    public private(set) var messages: [Mail]
+    private var messages: [Mail]
 
     /// Validator used to validate mails before storage.
     private let validator: MailValidator
@@ -39,7 +39,7 @@ public actor EphemeralMailbox {
     /// Returns all delivered mails.
     ///
     /// - Returns: A snapshot of the mailbox contents.
-    public func getMailbox() -> [Mail] {
+    public func getMessages() -> [Mail] {
         messages
     }
 

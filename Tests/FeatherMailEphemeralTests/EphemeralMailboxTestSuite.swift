@@ -138,7 +138,7 @@ struct EphemeralMailboxTestSuite {
 
         try await mailbox.add(mail)
 
-        let stored = await mailbox.getMailbox()
+        let stored = await mailbox.getMessages()
         #expect(stored.count == 1)
         #expect(stored.first?.subject == "Hello")
     }
@@ -164,7 +164,7 @@ struct EphemeralMailboxTestSuite {
         try await mailbox.add(first)
         try await mailbox.add(second)
 
-        let stored = await mailbox.getMailbox()
+        let stored = await mailbox.getMessages()
         #expect(stored.map(\.subject) == ["First", "Second"])
     }
 
@@ -182,7 +182,7 @@ struct EphemeralMailboxTestSuite {
         try await mailbox.add(mail)
         await mailbox.clear()
 
-        let stored = await mailbox.getMailbox()
+        let stored = await mailbox.getMessages()
         #expect(stored.isEmpty)
     }
 
@@ -199,7 +199,7 @@ struct EphemeralMailboxTestSuite {
 
         try await mailbox.validate(mail)
 
-        let stored = await mailbox.getMailbox()
+        let stored = await mailbox.getMessages()
         #expect(stored.isEmpty)
     }
 
@@ -223,7 +223,7 @@ struct EphemeralMailboxTestSuite {
             }
         }
 
-        let stored = await mailbox.getMailbox()
+        let stored = await mailbox.getMessages()
         #expect(stored.count == 100)
     }
 }
