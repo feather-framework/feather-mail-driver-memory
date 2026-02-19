@@ -1,6 +1,6 @@
 //
-//  MemoryMail.swift
-//  feather-memory-mail
+//  EphemeralMailbox.swift
+//  feather-mail-ephemeral
 //
 //  Created by Tibor Bödecs on 2026. 01. 15..
 //
@@ -9,35 +9,38 @@ import FeatherMail
 
 /// An in-memory, actor-isolated mailbox used for testing and development.
 ///
-/// `MemoryMail` validates incoming mail using a `MailValidator`
+/// `EphemeralMailbox` validates incoming mail using a `MailValidator`
 /// implementation before storing it. This mirrors the behavior of
 /// real mail clients, where validation occurs prior to delivery.
 ///
 /// Stored mails are kept in insertion order and are not persisted.
-public actor MemoryMail {
+public actor EphemeralMailbox {
 
     /// Stored mails in the order they were added.
-    private var delivered: [Mail]
+    private var messages: [Mail]
 
     /// Validator used to validate mails before storage.
     private let validator: MailValidator
 
     /// Creates a new in-memory mailbox.
     ///
-    /// - Parameter validator: The validator used to validate mails
+    /// - Parameters:
+    ///   - messages: The initial messages in the mailbox
+    ///   - validator: The validator used to validate mails
     ///   before they are stored. Defaults to `BasicMailValidator`.
     public init(
+        messages: [Mail] = [],
         validator: MailValidator = BasicMailValidator()
     ) {
-        self.delivered = []
+        self.messages = messages
         self.validator = validator
     }
 
     /// Returns all delivered mails.
     ///
     /// - Returns: A snapshot of the mailbox contents.
-    public func getMailbox() -> [Mail] {
-        delivered
+    public func getMessages() -> [Mail] {
+        messages
     }
 
     /// Validates and stores a mail.
@@ -46,7 +49,7 @@ public actor MemoryMail {
     /// - Throws: `MailValidationError` if validation fails.
     public func add(_ mail: Mail) async throws(MailValidationError) {
         try await validator.validate(mail)
-        delivered.append(mail)
+        messages.append(mail)
     }
 
     /// Validates a mail without storing it.
@@ -59,6 +62,6 @@ public actor MemoryMail {
 
     /// Removes all stored mails from the mailbox.
     public func clear() {
-        delivered.removeAll()
+        messages.removeAll()
     }
 }
