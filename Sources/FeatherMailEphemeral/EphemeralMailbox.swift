@@ -1,6 +1,6 @@
 //
 //  EphemeralMailbox.swift
-//  feather-memory-mail
+//  feather-mail-ephemeral
 //
 //  Created by Tibor Bödecs on 2026. 01. 15..
 //

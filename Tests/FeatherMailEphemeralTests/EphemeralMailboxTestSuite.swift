@@ -1,6 +1,6 @@
 //
 //  EphemeralMailboxTestSuite.swift
-//  feather-memory-mail
+//  feather-mail-ephemeral
 //
 //  Created by Binary Birds on 2026. 01. 15..
 
