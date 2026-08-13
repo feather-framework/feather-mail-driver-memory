@@ -34,7 +34,7 @@ let package = Package(
         .library(name: "FeatherMailEphemeral", targets: ["FeatherMailEphemeral"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/feather-framework/feather-mail", exact: "1.0.0-beta.3"),
+        .package(url: "https://github.com/feather-framework/feather-mail", exact: "1.0.0-rc.1"),
         // [docc-plugin-placeholder]
     ],
     targets: [
